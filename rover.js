@@ -1,27 +1,28 @@
 var myRover = {
   name: 'myRover',
-  position: [8,5],
-  direction: 'E'
+  position: [9,7],
+  direction: 'N'
 };
 
 var plusRover = {
   name: 'plusRover',
-  position: [9,7],
+  position: [6,7],
   direction: 'E'
 };
 
+var grid = [];
+var comm = ['f','f','b','r','f','f','l','l','b','b'];
+var obs = 0;
+
+
 console.log('myRover ' + JSON.stringify(myRover));
 console.log('plusRover '+ JSON.stringify(plusRover));
-
-var grid = [];
-var comm = ['f','f','f','f','r','f','f','l','b','b'];
-var obs = 0;
 
 //Grid with Obstacles
 for (var i = 0; i < 10; i++) {
   grid[i] = [];
     for (var j = 0; j < 10; j++) {
-      if(j % 2 === 0) {
+      if(j % 4 === 0) {
         grid [i][j] = 1;
       } else {
         grid [i][j] = 0;
@@ -38,7 +39,7 @@ function roverGridPos(rover) {
       roverComm(rover, i);
     }
     obs = 0;
-    console.log(rover.name + JSON.stringify(rover));
+    console.log(JSON.stringify(rover));
   } else {
     console.log('this position for '+ rover.name +' is already occupied, choose another');
   }
@@ -53,31 +54,31 @@ function goForward(rover) {
         if(rover.position[1]-1 < 0) {
           rover.position[1] = 9;
         } else {
-          rover.position[1]--
+          rover.position[1]--;
         }
           break;
     case 'E':
         if(rover.position[0] + 1 > 9) {
           rover.position[0] = 0;
         } else {
-          rover.position[0]++
+          rover.position[0]++;
         }
           break;
     case 'S':
         if(rover.position[1] + 1 > 9) {
           rover.position[1] = 0;
         } else {
-          rover.position[1]++
+          rover.position[1]++;
         }
           break;
     case 'W':
         if(rover.position[0] - 1 < 0) {
           rover.position[0] = 9;
         } else {
-          rover.position[0]--
+          rover.position[0]--;
         }
           break;
-  };
+  }
 
 
 }
@@ -89,31 +90,31 @@ function goBackward(rover) {
         if(rover.position[1] + 1 > 9) {
           rover.position[1] = 0;
         } else {
-          rover.position[1]++
+          rover.position[1]++;
         }
           break;
     case 'E':
         if(rover.position[0] - 1 < 0) {
           rover.position[0] = 9;
         } else {
-          rover.position[0]--
+          rover.position[0]--;
         }
           break;
     case 'S':
     if(rover.position[1] - 1 < 0) {
       rover.position[1] = 9;
     } else {
-      rover.position[1]--
+      rover.position[1]--;
     }
       break;
     case 'W':
     if(rover.position[0] + 1 > 9) {
       rover.position[0] = 0;
     } else {
-      rover.position[0]++
+      rover.position[0]++;
     }
       break;
-  };
+  }
 
 }
 
@@ -132,7 +133,7 @@ function goRight(rover) {
     case 'W':
       rover.direction = 'N';
       break;
-  };
+  }
 }
 
 
@@ -150,7 +151,7 @@ function goLeft(rover) {
     case 'W':
       rover.direction = 'S';
       break;
-  };
+  }
 
 }
 
